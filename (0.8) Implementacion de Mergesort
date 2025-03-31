@@ -1,0 +1,54 @@
+# Algoritmo de ordenamiento MergeSort
+def merge_sort(lista):
+    if len(lista) <= 1:
+        return lista  # Si la lista tiene 1 o 0 elementos, ya está ordenada
+    
+    # Dividir la lista en dos mitades
+    medio = len(lista) // 2
+    izquierda = merge_sort(lista[:medio])  # Ordenar la mitad izquierda
+    derecha = merge_sort(lista[medio:])  # Ordenar la mitad derecha
+
+    # Combinar ambas mitades ordenadas
+    return merge(izquierda, derecha)
+
+# Función para combinar dos listas ordenadas
+def merge(izquierda, derecha):
+    resultado = []
+    i = j = 0
+
+    # Comparar y fusionar los elementos de ambas listas
+    while i < len(izquierda) and j < len(derecha):
+        if izquierda[i] < derecha[j]:
+            resultado.append(izquierda[i])
+            i += 1
+        else:
+            resultado.append(derecha[j])
+            j += 1
+
+    # Agregar los elementos restantes (si los hay)
+    while i < len(izquierda):
+        resultado.append(izquierda[i])
+        i += 1
+    while j < len(derecha):
+        resultado.append(derecha[j])
+        j += 1
+
+    return resultado
+
+# --- Programa Principal ---
+# Pedimos al usuario que ingrese los números separados por espacio
+entrada = input("Ingrese los números separados por espacio: ")
+
+# Convertimos la entrada en una lista de números enteros
+lista_numeros = [int(num) for num in entrada.split()]
+
+# Mostramos la lista original
+print("\nLista original:")
+print(lista_numeros)
+
+# Ordenamos la lista usando MergeSort
+lista_ordenada = merge_sort(lista_numeros)
+
+# Mostramos la lista ordenada
+print("\nLista ordenada:")
+print(lista_ordenada)
