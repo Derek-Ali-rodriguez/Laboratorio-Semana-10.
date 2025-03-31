@@ -1,0 +1,40 @@
+def kilometros_a_millas(km):
+    return km * 0.621371
+
+def celsius_a_fahrenheit(c):
+    return (c * 9 / 5) + 32
+
+def litros_a_galones(l):
+    return l * 0.264172
+
+# Función para mostrar el menú
+def mostrar_menu():
+    print("\n--- Conversor de Unidades ---")
+    print("1. Kilómetros a Millas")
+    print("2. Celsius a Fahrenheit")
+    print("3. Litros a Galones")
+    print("4. Salir")
+
+# Bucle principal
+while True:
+    mostrar_menu()
+    opcion = input("Seleccione una opción: ")
+
+    if opcion == "1":
+        km = float(input("Ingrese la cantidad de kilómetros: "))
+        print(f"{km} km = {kilometros_a_millas(km):.2f} millas")
+
+    elif opcion == "2":
+        c = float(input("Ingrese la temperatura en Celsius: "))
+        print(f"{c}°C = {celsius_a_fahrenheit(c):.2f}°F")
+
+    elif opcion == "3":
+        l = float(input("Ingrese la cantidad de litros: "))
+        print(f"{l} litros = {litros_a_galones(l):.2f} galones")
+
+    elif opcion == "4":
+        print("Saliendo del programa...")
+        break
+
+    else:
+        print("Opción no válida. Intente de nuevo.")
