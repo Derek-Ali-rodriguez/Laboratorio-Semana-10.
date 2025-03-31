@@ -1,0 +1,49 @@
+# Definición de la clase base Vehiculo
+class Vehiculo:
+    def __init__(self, marca, modelo, anio, precio):
+        """Constructor de la clase Vehiculo."""
+        self.marca = marca
+        self.modelo = modelo
+        self.anio = anio
+        self.precio = precio
+
+    def mostrar_informacion(self):
+        """Muestra la información del vehículo."""
+        print(f"Marca: {self.marca}")
+        print(f"Modelo: {self.modelo}")
+        print(f"Año: {self.anio}")
+        print(f"Precio: ${self.precio:,.2f}")
+
+# Subclase Automovil que hereda de Vehiculo
+class Automovil(Vehiculo):
+    def __init__(self, marca, modelo, anio, precio, puertas):
+        """Constructor de la clase Automovil."""
+        super().__init__(marca, modelo, anio, precio)  # Llamamos al constructor de Vehiculo
+        self.puertas = puertas  # Nuevo atributo
+
+    def mostrar_informacion(self):
+        """Muestra la información del automóvil."""
+        super().mostrar_informacion()  # Llamamos al método de la clase base
+        print(f"Número de puertas: {self.puertas}")
+
+# Subclase Motocicleta que hereda de Vehiculo
+class Motocicleta(Vehiculo):
+    def __init__(self, marca, modelo, anio, precio, cilindrada):
+        """Constructor de la clase Motocicleta."""
+        super().__init__(marca, modelo, anio, precio)
+        self.cilindrada = cilindrada  # Nuevo atributo
+
+    def mostrar_informacion(self):
+        """Muestra la información de la motocicleta."""
+        super().mostrar_informacion()
+        print(f"Cilindrada: {self.cilindrada}cc")
+
+# Ejemplo de uso
+auto = Automovil("Toyota", "Corolla", 2022, 25000, 4)
+moto = Motocicleta("Yamaha", "MT-07", 2023, 9000, 689)
+
+print("\nInformación del Automóvil:")
+auto.mostrar_informacion()
+
+print("\nInformación de la Motocicleta:")
+moto.mostrar_informacion()
