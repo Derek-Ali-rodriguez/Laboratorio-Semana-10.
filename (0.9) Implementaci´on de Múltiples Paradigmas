@@ -1,0 +1,57 @@
+# --- Paradigma Imperativo ---
+print(" Paradigma Imperativo: Uso de Condicionales y Bucles")
+
+numeros = [1, 2, 3, 4, 5]  # Lista de números
+suma_total = 0
+
+for num in numeros:  # Bucle
+    if num % 2 == 0:  # Condicional
+        print(f"{num} es par.")
+    else:
+        print(f"{num} es impar.")
+    suma_total += num  # Acumulador
+
+print(f"Suma total: {suma_total}")
+
+# --- Paradigma Estructurado ---
+print("\n Paradigma Estructurado: Uso de Funciones")
+
+# Funciones matemáticas básicas
+def suma(a, b):
+    return a + b
+
+def resta(a, b):
+    return a - b
+
+def multiplicacion(a, b):
+    return a * b
+
+def division(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "Error: División por cero"
+
+# Usamos las funciones
+a, b = 10, 5
+print(f"Suma: {suma(a, b)}")
+print(f"Resta: {resta(a, b)}")
+print(f"Multiplicación: {multiplicacion(a, b)}")
+print(f"División: {division(a, b)}")
+
+# --- Paradigma Orientado a Objetos ---
+print("\n Paradigma Orientado a Objetos: Uso de Clases y Objetos")
+
+# Definición de la clase Vehiculo
+class Vehiculo:
+    def __init__(self, marca, modelo, anio):
+        self.marca = marca
+        self.modelo = modelo
+        self.anio = anio
+
+    def mostrar_info(self):
+        return f"Vehículo: {self.marca} {self.modelo} ({self.anio})"
+
+# Creación de un objeto de la clase Vehiculo
+mi_auto = Vehiculo("Toyota", "Corolla", 2022)
+print(mi_auto.mostrar_info())
