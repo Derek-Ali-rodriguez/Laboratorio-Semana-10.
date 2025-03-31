@@ -1,0 +1,53 @@
+def limpiar_texto(texto):
+    """Elimina signos de puntuación y convierte el texto a minúsculas."""
+    signos = ".,;:!?()[]{}\"'¿¡"
+    texto_limpio = ""
+    for caracter in texto:
+        if caracter not in signos:
+            texto_limpio += caracter.lower()
+    return texto_limpio
+
+def analizar_texto(texto):
+    # Limpiar el texto
+    texto = limpiar_texto(texto)
+    
+    # Separar palabras
+    palabras = texto.split()
+    
+    # Número total de palabras
+    total_palabras = len(palabras)
+    
+    # Palabras únicas
+    palabras_unicas = []
+    for palabra in palabras:
+        if palabra not in palabras_unicas:
+            palabras_unicas.append(palabra)
+    cantidad_palabras_unicas = len(palabras_unicas)
+    
+    # Frecuencia de palabras
+    frecuencia = {}
+    for palabra in palabras:
+        if palabra in frecuencia:
+            frecuencia[palabra] += 1
+        else:
+            frecuencia[palabra] = 1
+    
+    # Encontrar la palabra más frecuente
+    palabra_mas_frecuente = ""
+    frecuencia_maxima = 0
+    for palabra, conteo in frecuencia.items():
+        if conteo > frecuencia_maxima:
+            frecuencia_maxima = conteo
+            palabra_mas_frecuente = palabra
+    
+    # Imprimir resultados
+    print(f"Número total de palabras: {total_palabras}")
+    print(f"Número de palabras únicas: {cantidad_palabras_unicas}")
+    print("Frecuencia de palabras:")
+    for palabra in frecuencia:
+        print(f"  {palabra}: {frecuencia[palabra]}")
+    print(f"La palabra más frecuente es '{palabra_mas_frecuente}' con {frecuencia_maxima} apariciones.")
+
+
+texto_usuario = input("Introduce un texto: ")
+analizar_texto(texto_usuario)
