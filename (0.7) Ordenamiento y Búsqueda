@@ -1,0 +1,59 @@
+# Función para generar una lista de números "aleatorios" sin usar random
+def generar_lista(tamano, minimo, maximo):
+    lista = []
+    semilla = 12345  # Semilla inicial para generar los números
+    for _ in range(tamano):
+        semilla = (semilla * 32719 + 3) % 32749  # Generador congruencial simple
+        numero = minimo + (semilla % (maximo - minimo + 1))  # Escalamos al rango deseado
+        lista.append(numero)
+    return lista
+
+# Algoritmo de ordenamiento QuickSort
+def quicksort(lista):
+    if len(lista) <= 1:
+        return lista
+    pivote = lista[len(lista) // 2]  # Elegimos un pivote (el del medio)
+    izquierda = [x for x in lista if x < pivote]  # Elementos menores al pivote
+    centro = [x for x in lista if x == pivote]  # Elementos iguales al pivote
+    derecha = [x for x in lista if x > pivote]  # Elementos mayores al pivote
+    return quicksort(izquierda) + centro + quicksort(derecha)  # Ordenamos recursivamente
+
+# Algoritmo de Búsqueda Binaria
+def busqueda_binaria(lista, objetivo):
+    inicio, fin = 0, len(lista) - 1
+    while inicio <= fin:
+        medio = (inicio + fin) // 2  # Calculamos el punto medio
+        if lista[medio] == objetivo:
+            return medio  # Número encontrado, devolvemos la posición
+        elif lista[medio] < objetivo:
+            inicio = medio + 1  # Buscar en la parte derecha
+        else:
+            fin = medio - 1  # Buscar en la parte izquierda
+    return -1  # Número no encontrado
+
+# --- Programa Principal ---
+# Generamos una lista de 10 números "aleatorios" entre 1 y 100 sin usar random
+lista_numeros = generar_lista(10, 1, 100)
+
+# Mostramos la lista antes del ordenamiento
+print("\nLista original:")
+print(lista_numeros)
+
+# Ordenamos la lista con QuickSort
+lista_ordenada = quicksort(lista_numeros)
+
+# Mostramos la lista ordenada
+print("\nLista ordenada:")
+print(lista_ordenada)
+
+# Pedimos al usuario un número a buscar
+num_buscar = int(input("\nIngrese un número para buscar en la lista: "))
+
+# Realizamos la búsqueda binaria
+posicion = busqueda_binaria(lista_ordenada, num_buscar)
+
+# Mostramos el resultado de la búsqueda
+if posicion != -1:
+    print(f"El número {num_buscar} fue encontrado en la posición {posicion}.")
+else:
+    print(f"El número {num_buscar} no está en la lista.")
