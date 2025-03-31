@@ -1,0 +1,45 @@
+def calcular_estadisticas(*args):
+    """Calcula el promedio, la mediana y la desviación estándar de una lista de números."""
+    
+    if not args:  # Verificar si la lista está vacía
+        return "No se ingresaron números."
+
+    # Calcular el promedio usando una función lambda
+    promedio = (lambda numeros: sum(numeros) / len(numeros))(args)
+
+    # Calcular la mediana manualmente
+    numeros_ordenados = list(args)  # Convertir tupla a lista
+    for i in range(len(numeros_ordenados)):  # Método de burbuja para ordenar
+        for j in range(len(numeros_ordenados) - 1 - i):
+            if numeros_ordenados[j] > numeros_ordenados[j + 1]:
+                numeros_ordenados[j], numeros_ordenados[j + 1] = numeros_ordenados[j + 1], numeros_ordenados[j]
+
+    n = len(numeros_ordenados)
+    if n % 2 == 1:  # Si la cantidad de números es impar
+        mediana = numeros_ordenados[n // 2]
+    else:  # Si es par, se promedian los dos del centro
+        mediana = (numeros_ordenados[n // 2 - 1] + numeros_ordenados[n // 2]) / 2
+
+    # Calcular la desviación estándar manualmente
+    suma_cuadrados = 0
+    for num in args:
+        suma_cuadrados += (num - promedio) ** 2
+    desviacion_estandar = (suma_cuadrados / len(args)) ** 0.5
+
+    return promedio, mediana, desviacion_estandar
+
+
+# Solicitar al usuario una lista de números
+numeros_ingresados = input("Ingrese una lista de números separados por espacio: ")
+numeros = [float(num) for num in numeros_ingresados.split()]  # Convertir la entrada a números
+
+# Calcular estadísticas
+resultado = calcular_estadisticas(*numeros)
+
+# Mostrar resultados
+if isinstance(resultado, str):  # Si no se ingresaron números
+    print(resultado)
+else:
+    print(f"Promedio: {resultado[0]:.2f}")
+    print(f"Mediana: {resultado[1]:.2f}")
+    print(f"Desviación estándar: {resultado[2]:.2f}")
