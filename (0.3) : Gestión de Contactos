@@ -1,0 +1,70 @@
+class AgendaContactos:
+    def __init__(self):
+        self.contactos = []  # Lista para almacenar contactos como tuplas
+
+    def agregar_contacto(self, nombre, numero, correo):
+        """Agrega un nuevo contacto a la agenda."""
+        contacto = (nombre, numero, correo)
+        self.contactos.append(contacto)
+        print(f"Contacto '{nombre}' agregado correctamente.\n")
+
+    def buscar_contacto(self, nombre):
+        """Busca un contacto por su nombre y muestra su información."""
+        for contacto in self.contactos:
+            if contacto[0] == nombre:  # El nombre está en la posición 0 de la tupla
+                print("Contacto encontrado:")
+                print(f"  Nombre: {contacto[0]}")
+                print(f"  Número: {contacto[1]}")
+                print(f"  Correo: {contacto[2]}\n")
+                return
+        print(f"No se encontró el contacto '{nombre}'.\n")
+
+    def listar_contactos_ordenados(self):
+        """Lista todos los contactos en orden alfabético por nombre."""
+        if not self.contactos:
+            print("No hay contactos en la agenda.\n")
+            return
+
+        # Ordenar manualmente por nombre usando el método de burbuja
+        contactos_ordenados = self.contactos[:]
+        for i in range(len(contactos_ordenados)):
+            for j in range(len(contactos_ordenados) - 1 - i):
+                if contactos_ordenados[j][0] > contactos_ordenados[j + 1][0]:  # Comparar nombres
+                    contactos_ordenados[j], contactos_ordenados[j + 1] = contactos_ordenados[j + 1], contactos_ordenados[j]
+
+        print("Lista de contactos ordenados:")
+        for contacto in contactos_ordenados:
+            print(f"  {contacto[0]} - {contacto[1]} - {contacto[2]}")
+        print()
+
+
+# Menú de interacción con el usuario
+agenda = AgendaContactos()
+
+while True:
+    print("1. Agregar contacto")
+    print("2. Buscar contacto")
+    print("3. Listar contactos ordenados")
+    print("4. Salir")
+
+    opcion = input("Seleccione una opción: ")
+
+    if opcion == "1":
+        nombre = input("Nombre del contacto: ")
+        numero = input("Número de teléfono: ")
+        correo = input("Correo electrónico: ")
+        agenda.agregar_contacto(nombre, numero, correo)
+
+    elif opcion == "2":
+        nombre = input("Nombre del contacto a buscar: ")
+        agenda.buscar_contacto(nombre)
+
+    elif opcion == "3":
+        agenda.listar_contactos_ordenados()
+
+    elif opcion == "4":
+        print("Saliendo del programa...")
+        break
+
+    else:
+        print("Opción no válida, intenta de nuevo.\n")
